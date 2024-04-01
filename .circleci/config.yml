@@ -56,12 +56,3 @@ workflows:
       - hello-job-getter:
           requires:
             - hello-job-setter
-
-  my-workflow2:
-    jobs:
-      - hello-job:
-          name: hj
-      - hello-job-setter
-      - hello-job-getter:
-          requires:
-            - hello-job-setter
