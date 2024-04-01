@@ -21,7 +21,8 @@ jobs:
     resource_class: medium
     steps:
       - checkout # check out the code in the project directory
-      - echo # run the `echo` command
+      - echo:
+          message: "hola keepcoding"
 
 workflows:
   my-workflow:
