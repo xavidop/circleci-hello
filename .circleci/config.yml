@@ -3,10 +3,22 @@ version: 2.1
 orbs:
   orb-tools: circleci/orb-tools@12.0
   shellcheck: circleci/shellcheck@3.2.0
+  helloworld: xavidop/circleci-orb-kc9@dev:alpha
+
+executors:
+  node:
+    docker:
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
 
 filters: &filters
   tags:
     only: /.*/
+
+jobs:
+  greet-job:
+    executor: node # use the `node` executor defined above
+    steps:
+      - helloworld/greet
 
 workflows:
   publish-dev-orb:
@@ -14,6 +26,8 @@ workflows:
       not:
         equal: [ main, << pipeline.git.branch >> ]
     jobs:
+      - greet-job
+      - helloworld/hello
       - orb-tools/lint
       - shellcheck/check:
           dir: ./src/scripts
