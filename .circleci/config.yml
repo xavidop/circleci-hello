@@ -18,7 +18,7 @@ commands:
 jobs:
   hello-job:
     executor: node # use the `node` executor defined above
-    resource_class: xlarge
+    resource_class: medium
     steps:
       - checkout # check out the code in the project directory
       - echo # run the `echo` command
